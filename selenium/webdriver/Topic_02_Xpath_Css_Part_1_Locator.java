@@ -55,7 +55,7 @@ public class Topic_02_Xpath_Css_Part_1_Locator {
 	}
 	@Test
 	public void TC_05_LinkText() {
-		driver.findElement(By.linkText("Login")).click();
+		driver.findElement(By.linkText("Log in")).click();
 		sleepInsecond(3);
 	}
 	@Test
@@ -79,7 +79,7 @@ public class Topic_02_Xpath_Css_Part_1_Locator {
 		sleepInsecond(3);
 		driver.findElement(By.cssSelector("input[class='search-box-text ui-autocomplete-input']")).sendKeys("MAcbook");
 		sleepInsecond(3);
-		driver.findElement(By.cssSelector("Email")).sendKeys("tam@gmail.com");
+		driver.findElement(By.cssSelector("input[name='Email']")).sendKeys("tam@gmail.com");
 		sleepInsecond(3);
 		driver.findElement(By.cssSelector("a[href*='login']")).click();
 		sleepInsecond(3);
@@ -92,7 +92,7 @@ public class Topic_02_Xpath_Css_Part_1_Locator {
 		sleepInsecond(3);
 		driver.findElement(By.xpath("//input[contains(@class,'search-box-text')]")).sendKeys("Macbook");
 		sleepInsecond(3);
-		driver.findElement(By.xpath("//input[@name-'Email'")).sendKeys("AutoFC@gmail.com");
+		driver.findElement(By.xpath("//input[@name='Email']")).sendKeys("AutoFC@gmail.com");
 		sleepInsecond(3);
 	}	
 	@AfterClass
