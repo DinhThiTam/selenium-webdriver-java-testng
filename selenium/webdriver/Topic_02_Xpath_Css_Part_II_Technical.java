@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_00_Template {
+public class Topic_02_Xpath_Css_Part_II_Technical {
 	WebDriver driver;
 
 	@BeforeClass
@@ -22,7 +22,7 @@ public class Topic_00_Template {
 
 	@Test
 	public void TC_01_() {
-	
+		
 	}
 
 	@Test
