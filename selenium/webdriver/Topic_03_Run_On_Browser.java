@@ -31,13 +31,13 @@ public class Topic_03_Run_On_Browser {
 
 	@Test
 	public void TC_02_Run_On_Chrome() {
-		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
 		driver = new ChromeDriver();
 	}
 
 	@Test
 	public void TC_03__Run_On_Edge_Chromium() {
-		System.setProperty("webdriver.edge.driver", projectPath+ "\\browserDrivers\\msedgedriver.exe");
+		System.setProperty("webdriver.edge.driver", projectPath+ "/browserDrivers/msedgedriver.exe");
 		driver = new EdgeDriver();
 	}
 	
