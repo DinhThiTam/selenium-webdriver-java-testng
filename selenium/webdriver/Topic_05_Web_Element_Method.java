@@ -17,11 +17,7 @@ public class Topic_05_Web_Element_Method {
 	public void beforeClass() {
 	
 		driver = new FirefoxDriver();
-		
-	
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		
-	
 		driver.get("https://demo.nopcommerce.com/");
 	}
 
