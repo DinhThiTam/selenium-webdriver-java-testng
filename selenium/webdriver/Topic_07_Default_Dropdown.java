@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_06_Textbox_TextArea_Exercise {
+public class Topic_07_Default_Dropdown {
 	WebDriver driver;
 	Select select;
 	JavascriptExecutor jsExecutor;
