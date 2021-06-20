@@ -36,7 +36,7 @@ public class Topic_05_Web_Element_Excercise {
 		password = "123456";
 	}
 
-	// @Test
+	@Test
 	public void TC_01_Create_New_Account() {
 		driver.get("http://live.demoguru99.com/");
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
@@ -44,8 +44,8 @@ public class Topic_05_Web_Element_Excercise {
 		driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys(firstName);
 		driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys(lastName);
 		driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(emailAdress);
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("password");
-		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("password");
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+		driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys(password);
 
 		driver.findElement(By.xpath("//button[@title='Register']")).click();
 		Assert.assertEquals(driver
@@ -71,7 +71,7 @@ public class Topic_05_Web_Element_Excercise {
 		driver.findElement(By.xpath("//a[@title='Log Out']")).click();
 	}
 
-	// @Test
+	@Test
 	public void TC_02_Login() {
 		driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 		driver.findElement(By.cssSelector("#email")).sendKeys(emailAdress);
@@ -80,8 +80,7 @@ public class Topic_05_Web_Element_Excercise {
 		driver.findElement(By.cssSelector("#send2")).click();
 		// Assert.assertEquals(driver.findElement(By.xpath("//h1[text()='My
 		// Dashboard'")).getText(), "MY DASHBOARD");
-		Assert.assertEquals(driver.findElement(By.xpath("//p[@class='hello']/strong")).getText(),
-				"Hello, " + fullname + "!");
+		Assert.assertEquals(driver.findElement(By.xpath("//p[@class='hello']/strong")).getText(),"Hello, " + fullname + "!");
 		Assert.assertTrue(driver.findElement(
 				By.xpath("//h3[text()='Contact Information']/parent::div/following-sibling::div/p[contains(string(),'"
 						+ fullname + "')]"))
@@ -117,7 +116,7 @@ public class Topic_05_Web_Element_Excercise {
 
 	}
 
-	//@Test
+	@Test
 	public void TC_03_Displayed_Function() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		By emailTextbox = By.id("mail");
@@ -135,7 +134,7 @@ public class Topic_05_Web_Element_Excercise {
 
 	}
 
-	//@Test
+	@Test
 	public void TC_04_Selected() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		clickToElement(eunder18Radio);
@@ -149,7 +148,7 @@ public class Topic_05_Web_Element_Excercise {
 
 	}
 
-	//@Test
+	@Test
 	public void TC_05_Enabled() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		Assert.assertTrue(isElementEnable(emailTextbox));
