@@ -53,12 +53,18 @@ public void TC_01_JQuery() {
 
 	@Test
 	public void TC_02_React() {
-		
+		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");	
+		selectItemCustomDropDow("//div[@id='root']//div[@role='alert']","//div[contains(@class,visible.menu)]/div[@class='item']/span", "Christian");
+		sleepInsecond(3);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='divider text' and text()='Christian']")).isDisplayed());
 	}
 
 	@Test
 	public void TC_03_VueJS() {
-		
+		driver.get("https://mikerodham.github.io/vue-dropdowns/");
+		selectItemCustomDropDow("//div[@class='btn-group']/li/span[@class='caret']", "//div[@class='btn-group']//ul[@class='dropdown-menu']//a", "First Option");
+		sleepInsecond(3);
+		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='dropdown-toggle' and contains(text(),'First Option')]")).isDisplayed());
 	}
 	
 	public void selectItemCustomDropDow(String parentXpath, String childXpath, String expectedItem) {
@@ -72,7 +78,7 @@ public void TC_01_JQuery() {
 		for (WebElement item : allItems) {
 			//get text vaf ktra xem co bang item mong muon ko
 			//item can chon no hien thi
-			if (item.getText().equals(expectedItem)) {
+			if (item.getText().trim().equals(expectedItem)) {
 				if(item.isDisplayed()) {
 					item.click();
 				}else {
