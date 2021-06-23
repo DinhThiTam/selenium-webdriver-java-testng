@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,12 +19,14 @@ import org.testng.annotations.Test;
 
 public class Topic_08_Custom_Dropdown_I {
 	WebDriver driver;
+	String projectPath = System.getProperty("user.dir");
 	WebDriverWait explicitWait;
 	JavascriptExecutor jsExecutor;
 
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
 		explicitWait = new WebDriverWait(driver, 15);
 		
 		//Ep kieu tuong minh
@@ -66,6 +69,15 @@ public void TC_01_JQuery() {
 		sleepInsecond(3);
 		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='dropdown-toggle' and contains(text(),'First Option')]")).isDisplayed());
 	}
+	
+	@Test
+	public void TC_04_Angula() {
+		driver.get("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding");
+		selectItemCustomDropDow("//div[@id='local']//span[@role='listbox']/span", "//li[@class='e-list-item']", "Basketball");
+		sleepInsecond(3);
+		//Assert.assertEquals(driver.findElement(By.xpath("//select[@id='games_hidden']/option[text() = 'Basketball']")), "Basketball");
+	}
+	
 	
 	public void selectItemCustomDropDow(String parentXpath, String childXpath, String expectedItem) {
 		driver.findElement(By.xpath(parentXpath)).click();
