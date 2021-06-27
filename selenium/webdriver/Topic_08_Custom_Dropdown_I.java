@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,7 +39,7 @@ public class Topic_08_Custom_Dropdown_I {
 		
 	}
 
-	@Test
+	//@Test
 public void TC_01_JQuery() {
 		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
 		selectItemCustomDropDow("//span[@id='number-button']/span[contains(@class,'ui-selectmenu-icon')]", "//ul[@id='number-menu']/li[@class='ui-menu-item']/div", "5");
@@ -54,7 +55,7 @@ public void TC_01_JQuery() {
 		Assert.assertTrue(driver.findElement(By.xpath("//span[@id='number-button']/span[@class='ui-selectmenu-text' and text()='3']")).isDisplayed());
 	}
 
-	@Test
+	//@Test
 	public void TC_02_React() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-selection/");	
 		selectItemCustomDropDow("//div[@id='root']//div[@role='alert']","//div[contains(@class,visible.menu)]/div[@class='item']/span", "Christian");
@@ -62,22 +63,57 @@ public void TC_01_JQuery() {
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='divider text' and text()='Christian']")).isDisplayed());
 	}
 
-	@Test
+	//@Test
 	public void TC_03_VueJS() {
 		driver.get("https://mikerodham.github.io/vue-dropdowns/");
 		selectItemCustomDropDow("//div[@class='btn-group']/li/span[@class='caret']", "//div[@class='btn-group']//ul[@class='dropdown-menu']//a", "First Option");
 		sleepInsecond(3);
 		Assert.assertTrue(driver.findElement(By.xpath("//li[@class='dropdown-toggle' and contains(text(),'First Option')]")).isDisplayed());
+		
+		
+		
 	}
 	
-	@Test
+	//@Test
 	public void TC_04_Angula() {
 		driver.get("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding");
+		sleepInsecond(3);
 		selectItemCustomDropDow("//div[@id='local']//span[@role='listbox']/span", "//li[@class='e-list-item']", "Basketball");
 		sleepInsecond(3);
+		//cách làm bang javascrip
+		String inputValue = (String) jsExecutor.executeScript("return document.querySelector('div[id='local']>span[role='listbox']/span').value");
+		Assert.assertEquals(inputValue, "Basketball");
+	 
 		//Assert.assertEquals(driver.findElement(By.xpath("//select[@id='games_hidden']/option[text() = 'Basketball']")), "Basketball");
+		
+				//driver.findElement(By.xpath("//div[@id='local']//span[@role='listbox']/span']")).sendKeys("Basketball");
+			//	driver.findElement(By.xpath("//div[@id='local']//span[@role='listbox']/span")).sendKeys(Keys.TAB);
+				
+				//Verify
+		
+				
 	}
-	
+	//@Test
+	public void TC_05_VerifyToElementDisable() {
+		driver.get("http://indrimuska.github.io/jquery-editable-select/");
+		sleepInsecond(3);
+		driver.findElement(By.cssSelector("#default-place input")).sendKeys("Audi");
+		sleepInsecond(3);
+		driver.findElement(By.cssSelector("#default-place input")).sendKeys(Keys.TAB);
+		
+		//Verify
+		String inputValue = (String) jsExecutor.executeScript("return document.querySelector('#default-place input').value");
+		Assert.assertEquals(inputValue, "Audi");
+		
+		
+		driver.findElement(By.cssSelector("#default-place input")).clear();
+		driver.findElement(By.cssSelector("#default-place input")).sendKeys("BMW");
+		sleepInsecond(3);
+		driver.findElement(By.cssSelector("#default-place input")).sendKeys(Keys.TAB);
+		//Verify
+		inputValue = (String) jsExecutor.executeScript("return document.querySelector('#default-place input').value");
+		Assert.assertEquals(inputValue, "BMW");
+	}
 	
 	public void selectItemCustomDropDow(String parentXpath, String childXpath, String expectedItem) {
 		driver.findElement(By.xpath(parentXpath)).click();

@@ -20,10 +20,10 @@ public class Topic_03_Run_On_Browser {
 	@Test
 	public void TC_01_Run_On_Firefox() {
 		//Ver 47.0.2
-	driver = new FirefoxDriver();
-	//version (>=48)
-	//System.setProperty("webdriver.gecko.driver","//geckodriver_path");
 	//driver = new FirefoxDriver();
+	//version (>=48)
+	System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+	driver = new FirefoxDriver();
 	
 	driver.get("http://live.guru99.com");
 	driver.quit();
