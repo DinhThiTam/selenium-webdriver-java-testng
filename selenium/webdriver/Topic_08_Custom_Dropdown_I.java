@@ -93,7 +93,7 @@ public void TC_01_JQuery() {
 		
 				
 	}
-	//@Test
+	@Test
 	public void TC_05_VerifyToElementDisable() {
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		sleepInsecond(3);
@@ -104,7 +104,6 @@ public void TC_01_JQuery() {
 		//Verify
 		String inputValue = (String) jsExecutor.executeScript("return document.querySelector('#default-place input').value");
 		Assert.assertEquals(inputValue, "Audi");
-		
 		
 		driver.findElement(By.cssSelector("#default-place input")).clear();
 		driver.findElement(By.cssSelector("#default-place input")).sendKeys("BMW");

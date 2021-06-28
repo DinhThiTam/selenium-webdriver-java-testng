@@ -54,14 +54,27 @@ public class Topic_11_User_Interaction_Part_I {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_03_Hover_3() {
 		driver.get("https://hn.telio.vn/");
-		
+		//Hover hien thi sub-menu
 		action.moveToElement(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']/span[contains(text(),'Đồ ăn vặt')]"))).perform();
 		sleepInsecond(3);
 		
+		//Verify tung sub-menu
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a[text()='Bắp rang bơ']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a[text()='Đồ ăn vặt']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a[text()='Ô mai']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a[text()='Hoa quả sấy']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a[text()='Snack']")).isDisplayed());
+		
+		//Verify 5 sub-menu
+		Assert.assertEquals(driver.findElements(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a")).size(), 5);
+		
+		
+		//System.out.println("Elemets: " + driver.findElements(By.xpath("//div[@class='row']//a[@class='menu-link']//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a")).size());
 		//action.moveToElement(driver.findElement(By.xpath("//div[@class='row']//a[@href='https://hn.telio.vn/do-an-vat/bap-rang-bo']")));
+		//Assert.assertTrue(((WebElement) elements).isDisplayed());
 		//	action.perform();
 		//Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@href='https://hn.telio.vn/do-an-vat/bap-rang-bo']")).isDisplayed());
 		
@@ -71,7 +84,8 @@ public class Topic_11_User_Interaction_Part_I {
 		
 		
 		//Verify
-	//	String inputValue = (String) jsExecutor.executeScript("return document.querySelector(//div[@class='row']//a[@href='https://hn.telio.vn/do-an-vat/bap-rang-bo']");
+		//String inputValue = (String) jsExecutor.executeScript("return document.querySelector(//span[contains(text(),'Đồ ăn vặt')]/parent::a[@class='menu-link']/following-sibling::ul[@class='groupmenu-drop']//li/a");
+		//System.out.println("Elemets: " + inputValue);
 		//Assert.assertEquals(inputValue, "Bắp rang bơ");
 		//Assert.assertEquals(driver.findElement(By.xpath("//div[@class='row']//a[@href='https://hn.telio.vn/do-an-vat/bap-rang-bo']")).getText(), "Bắp rang bơ");
 		//Assert.assertTrue(driver.findElement(By.xpath("//div[@class='row']//a[@href='https://hn.telio.vn/do-an-vat/Ô mai']")).isDisplayed());
@@ -91,7 +105,7 @@ public class Topic_11_User_Interaction_Part_I {
 		Assert.assertEquals(driver.findElements(By.cssSelector(".ui-selectee.ui-selected")).size(), 4);
 		
 	}
-	@Test
+	//@Test
 	public void TC_05_ClickAndHover_2() {
 		driver.get("https://automationfc.github.io/jquery-selectable/");
 		List<WebElement> rectange = driver.findElements(By.cssSelector(".ui-selectee"));
