@@ -74,11 +74,13 @@ public void TC_01_JQuery() {
 		
 	}
 	
-	//@Test
+	@Test
 	public void TC_04_Angula() {
 		driver.get("https://ej2.syncfusion.com/angular/demos/?_ga=2.262049992.437420821.1575083417-524628264.1575083417#/material/drop-down-list/data-binding");
 		sleepInsecond(3);
-		selectItemCustomDropDow("//div[@id='local']//span[@role='listbox']/span", "//li[@class='e-list-item']", "Basketball");
+		//selectItemCustomDropDow("//div[@id='local']//span[@role='listbox']/span", "//li[@class='e-list-item']", "Basketball");
+		//sleepInsecond(3);
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(By.cssSelector(".fhs-btn-login")));
 		sleepInsecond(3);
 		//cách làm bang javascrip
 		String inputValue = (String) jsExecutor.executeScript("return document.querySelector('div[id='local']>span[role='listbox']/span').value");
@@ -93,7 +95,7 @@ public void TC_01_JQuery() {
 		
 				
 	}
-	@Test
+	//@Test
 	public void TC_05_VerifyToElementDisable() {
 		driver.get("http://indrimuska.github.io/jquery-editable-select/");
 		sleepInsecond(3);
