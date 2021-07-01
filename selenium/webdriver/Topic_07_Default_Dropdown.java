@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 
 public class Topic_07_Default_Dropdown {
 	WebDriver driver;
+	String projectPath = System.getProperty("user.dir");
 	Select select;
 	JavascriptExecutor jsExecutor;
 	By myAccount = By.className("ico-account");
@@ -30,7 +31,8 @@ public class Topic_07_Default_Dropdown {
 	
 	@BeforeClass
 	public void beforeClass() {
-		driver = new FirefoxDriver();
+		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		driver = new FirefoxDriver();;
 		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("https://demo.nopcommerce.com/");

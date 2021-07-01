@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_13_Popup_Iframe_Window_Tab_Part_I {
+public class Topic_13_Popup {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	
