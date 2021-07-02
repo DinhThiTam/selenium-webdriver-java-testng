@@ -76,7 +76,7 @@ public class Topic_14_Frame_Iframe {
 		
 		//driver.switchTo().defaultContent();	
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='cs_chat_iframe']")));
-		sleepInsecond(3);
+		sleepInsecond(5);
 		driver.findElement(By.xpath("//div[@class='button_text']/following-sibling::div")).click();
 		driver.findElement(By.xpath("//div[@class='container']//input[@placeholder='Nhập tên của bạn']")).sendKeys("Đinh THị Tâm");
 		driver.findElement(By.xpath("//div[@class='container']//input[@placeholder='Nhập số điện thoại của bạn']")).sendKeys("0983970447");
