@@ -3,9 +3,13 @@ package webdriver;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -13,13 +17,18 @@ import org.testng.annotations.Test;
 
 public class Topic_15_Window_Tab {
 	WebDriver driver;
+	Alert alert;
+	WebDriverWait explicitWait;
 	String projectPath = System.getProperty("user.dir");
 	
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		explicitWait = new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 	}
 
@@ -52,7 +61,7 @@ public class Topic_15_Window_Tab {
 	}
 	
 
-	@Test
+	//@Test
 	public void TC_02_Kyna() {
 		driver.get("https://kyna.vn/");
 		String parentID= driver.getWindowHandle();
@@ -73,16 +82,37 @@ public class Topic_15_Window_Tab {
 		switchToWindowByTitle("Tuyển dụng, việc làm, tìm việc làm nhanh mới nhất  | VietnamWorks");
 		driver.findElement(By.xpath("//input[@id='search-bar-input']")).sendKeys("Automation Test");
 		sleepInsecond(3);
-		//switchToWindowByTitle("Kyna.vn - Học online cùng chuyên gia");
-		//driver.findElement(By.xpath("//div[@class='info']//a[text()='PRIMUS']")).click();
-		//switchToWindowByTitle("PRIMUS Homepage");
 		
+		switchToWindowByTitle("Kyna.vn - Học online cùng chuyên gia");
+		driver.findElement(By.xpath("//div[@class='info']//a[text()='PRIMUS']")).click();
+		switchToWindowByTitle("PRIMUS Homepage");
 		
+		closeAlltabWithoutParent(parentID);
 		
 	}
 
 	@Test
-	public void TC_03_() {
+	public void TC_03_liveGuru() {
+		driver.get("http://live.demoguru99.com/index.php/");
+		
+		driver.findElement(By.xpath("//a[text()='Mobile']")).click();
+		String parentID = driver.getWindowHandle();
+		driver.findElement(By.xpath("//a[text()='Sony Xperia']/parent::h2/following-sibling::div[@class='actions']//a[@class='link-compare']")).click();
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='The product Sony Xperia has been added to comparison list.']")).isDisplayed());
+		driver.findElement(By.xpath("//a[text()='Samsung Galaxy']/parent::h2/following-sibling::div[@class='actions']//a[@class='link-compare']")).click();
+		Assert.assertTrue(driver.findElement(By.xpath("//span[text()='The product Samsung Galaxy has been added to comparison list.']")).isDisplayed());
+		driver.findElement(By.xpath("//span[text()='Compare']")).click();
+		
+		switchToWindowByID(parentID);
+		//switchToWindowByTitle("Products Comparison List - Magento Commerce");
+		Assert.assertEquals(driver.getCurrentUrl(), "http://live.demoguru99.com/index.php/catalog/product_compare/index/");
+		closeAlltabWithoutParent(parentID);
+		driver.switchTo().window(parentID);
+		driver.findElement(By.xpath("//a[text()='Clear All']")).click();
+		alert = explicitWait.until(ExpectedConditions.alertIsPresent());
+		alert.accept();
+		sleepInsecond(3);
+		Assert.assertEquals(driver.findElement(By.xpath("//span[text()='The comparison list was cleared.']")).getText(), "The comparison list was cleared.");
 		
 	}
 	
@@ -117,8 +147,15 @@ public class Topic_15_Window_Tab {
 			}
 		}
 	}
-	public void closeAlltabWithoutParent (String parent) {
-		
+	public void closeAlltabWithoutParent (String parentID) {
+		Set<String> allWindowIDs = driver.getWindowHandles();
+		for (String id : allWindowIDs) {
+			if (!id.equals(parentID)) {
+				driver.switchTo().window(id);
+				driver.close();
+			}
+			
+		}
 	}
 	public void sleepInsecond(long timeoutInsecond){
 		try {

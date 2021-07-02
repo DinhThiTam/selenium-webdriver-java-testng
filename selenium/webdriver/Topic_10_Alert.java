@@ -40,12 +40,12 @@ public class Topic_10_Alert {
 		
 		
 	}
-	//@Test
+	@Test
 	public void TC_01_Confirm_Alert_2() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
 		alert = explicitWait.until(ExpectedConditions.alertIsPresent());
-		Assert.assertEquals(alert.getText(), "I am a JS Alert");
+	//	Assert.assertEquals(alert.getText(), "I am a JS Alert");
 		alert.accept();
 		sleepInsecond(3);
 		Assert.assertEquals(driver.findElement(By.id("result")).getText(), "You clicked an alert successfully");
