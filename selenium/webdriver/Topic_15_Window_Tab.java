@@ -69,8 +69,8 @@ public class Topic_15_Window_Tab {
 		
 		driver.findElement(By.xpath("//div[@id='k-footer']//a[text()='VietnamWorks']")).click();
 		
+		//switch qua vietnamwork
 		switchToWindowByTitle("Tuyển dụng, việc làm, tìm việc làm nhanh mới nhất  | VietnamWorks");
-		
 		driver.findElement(By.xpath("//input[@id='search-bar-input']")).sendKeys("Automation Test");
 		sleepInsecond(3);
 		//switchToWindowByTitle("Kyna.vn - Học online cùng chuyên gia");
@@ -116,6 +116,9 @@ public class Topic_15_Window_Tab {
 			break;
 			}
 		}
+	}
+	public void closeAlltabWithoutParent (String parent) {
+		
 	}
 	public void sleepInsecond(long timeoutInsecond){
 		try {
