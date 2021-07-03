@@ -141,7 +141,7 @@ public class Topic_15_Window_Tab {
 		//Duyệt qua các giá trị trong all windows, switch qua window rồi getTitle của window ra, nếu title thực tế bằng với title của window vừa switch thì done, thoát khỏi vòng lặp
 		for (String id : allWindowIDs) {	
 			driver.switchTo().window(id);
-			String actualTitle = driver.getTitle();
+			String actualTitle = driver.getTitle().trim();
 			if (actualTitle.equals(pageTitle)) {
 			break;
 			}
