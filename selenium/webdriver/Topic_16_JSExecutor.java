@@ -14,8 +14,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.sun.xml.internal.txw2.Document;
-
 public class Topic_16_JSExecutor {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
