@@ -31,27 +31,83 @@ public class Topic_19_Wait_VI_Mixing {
 		
 	}
 
-	@Test
+	//@Test
 	public void TC_01_Element_Found_Implicit_Explicit() {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		explicitWait = new WebDriverWait(driver, 15);
 		driver.get("https://www.facebook.com/");
 		showDataTimeNow("Start explicit: ");
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='email']")));
+		showDataTimeNow("End explicit: ");
+		showDataTimeNow("Start implicit: ");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("dttam.cntt@gmail.com");
+		showDataTimeNow("End implicit: ");
 	}
-	@Test
+	//@Test
 	public void TC_02_Element_Not_Found_Implicit() {
-		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//Chờ hết timeout của implicit
+		//cứ nửa s tìm lại 1 lần
+		//Hết timeout thì đánh fail và throw exception : No such element
+		driver.get("https://www.facebook.com/");
+		showDataTimeNow("Start implicit: ");
+		try {
+			driver.findElement(By.xpath("//input[@id='abc']")).sendKeys("dttam.cntt@gmail.com");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		showDataTimeNow("End implicit: ");
 	}
 
-	@Test
+	//@Test
 	public void TC_03_Element_Not_Found_Implicit_Explicit() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		explicitWait = new WebDriverWait(driver, 10);
+		driver.get("https://www.facebook.com/");
+		showDataTimeNow("Start explicit: ");
+		try {
+			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='abc']")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		showDataTimeNow("End explicit: ");
+		showDataTimeNow("Start implicit: ");
+		try {
+			driver.findElement(By.xpath("//input[@id='abc']")).sendKeys("dttam.cntt@gmail.com");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		showDataTimeNow("End implicit: ");
 	}
 	
 	@Test
-	public void TC_04_UploadFile() {
-		
+	public void TC_04_Element_Not_Found_Explicit_Param_By() {
+		explicitWait = new WebDriverWait(driver, 5);
+		driver.get("https://www.facebook.com/");
+		showDataTimeNow("Start explicit: ");
+		try {
+			explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='abc']")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
+	}
+	@Test
+	public void TC_05_Element_Not_Found_Explicit_Param_WebElement() {
+		
+		explicitWait = new WebDriverWait(driver, 5);
+		driver.get("https://www.facebook.com/");
+		showDataTimeNow("Start explicit: ");
+		try {
+			explicitWait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@id='abc']"))));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@AfterClass
@@ -60,7 +116,7 @@ public class Topic_19_Wait_VI_Mixing {
 	}
 	public void showDataTimeNow(String status) {
 		Date date = new Date();
-		System.out.println( "------------------" + status + ":" + "---------------" + date.toString());
+		System.out.println( "------------------" + status + "---------------" + date.toString());
 		
 	}
 	public void sleepInsecond(long timeoutInsecond){
