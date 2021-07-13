@@ -38,7 +38,7 @@ public class Topic_19_Wait_VII_Fluent {
 		
 	}
 
-	@Test
+	//@Test
 	public void TC_01_() {
 		driver.get("https://automationfc.github.io/fluent-wait/");
 		WebElement countdownTimer = driver.findElement(By.cssSelector("div#javascript_countdown_time"));
@@ -55,11 +55,12 @@ public class Topic_19_Wait_VII_Fluent {
 			}				
 		});
 	}
-	@Test
+	//@Test
 	public void TC_02_() {
 		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		clickToElement(By.xpath("//div[@id='start']/button"));
 		Assert.assertTrue(isElementDisplay(By.xpath("//div[@id='finish']/h4[text()='Hello World!']")));
+		Assert.assertEquals(getElement(By.xpath("//div[@id='finish']/h4")).getText(), "Hello World!");
 
 	}
 	@Test
@@ -68,6 +69,16 @@ public class Topic_19_Wait_VII_Fluent {
 		driver.findElement(By.id("txtUsername")).sendKeys("Admin");
 		driver.findElement(By.id("txtPassword")).sendKeys("admin123");
 		driver.findElement(By.id("btnLogin")).click();
+		Assert.assertTrue(isJQueryLoadedSuccess(driver));
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='total']//span")).getText(), "3 month(s)");
+		
+		driver.findElement(By.xpath("//a[@id='menu_pim_viewPimModule']")).click();
+		Assert.assertTrue(isJQueryLoadedSuccess(driver));
+		driver.findElement(By.id("empsearch_employee_name_empName")).sendKeys("Peter Mac");
+	
+		driver.findElement(By.id("searchBtn")).click();
+		Assert.assertTrue(isJQueryLoadedSuccess(driver));
+		Assert.assertEquals(driver.findElement(By.xpath("//table[@id='resultTable']//tr/td[3]//a")).getText(), "Peter Mac");
 		
 		
 	}
@@ -117,7 +128,7 @@ public class Topic_19_Wait_VII_Fluent {
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 			@Override
 			public Boolean apply (WebDriver driver) {
-				return (Boolean) jsExecutor.executeScript("return (Window.jQuery !=null) && (jQuery.active === 0);");
+				return (Boolean) jsExecutor.executeScript("return (window.jQuery !=null) && (jQuery.active === 0);");
 			}
 		};
 		return explicitWait.until(jQueryLoad);
