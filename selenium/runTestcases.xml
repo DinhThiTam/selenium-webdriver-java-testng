@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Suite" parallel="false">
-  <test name="Test">
+<suite name="WorkSpace" parallel="false">
+  <test name="Run Test On Chrome">
+  	<groups>
+  		<run> 
+  			<include name = "user"/>
+  		</run>
+  	</groups>
     <classes>
-      <class name="testng.Topic_01_Annotations"/>
+      <class name="testng.Topic_03_Group_Admin"/>
+      <class name="testng.Topic_03_Group_User"/>     
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
